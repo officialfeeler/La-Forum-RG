@@ -99,9 +99,9 @@ ul{ list-style: none; margin: 0; padding: 0; }
 }
 #preloader.hidden{ opacity: 0; visibility: hidden; }
 .preloader-logo{
-  width: min(34vw, 180px);
+  width: min(42vw, 260px);
   animation: pulse 1.6s ease-in-out infinite;
-  filter: drop-shadow(0 0 24px rgba(168,121,232,.4));
+  filter: drop-shadow(0 0 30px rgba(168,121,232,.45));
 }
 @keyframes pulse{
   0%, 100%{ transform: scale(1); opacity: .75; }
@@ -146,6 +146,14 @@ ul{ list-style: none; margin: 0; padding: 0; }
   border-color: var(--gold);
 }
 .btn-outline-accent:hover{ background: var(--gold); color: #1a1408; transform: translateY(-2px); box-shadow: 0 14px 30px -12px rgba(215,167,101,.5); }
+.btn-gold{
+  background: linear-gradient(135deg, #f3d9a4, #d7a765 55%, #a97c3d);
+  color: #1a1408;
+  border-radius: 999px;
+  border-color: transparent;
+  box-shadow: 0 14px 30px -12px rgba(215,167,101,.5);
+}
+.btn-gold:hover{ transform: translateY(-2px); box-shadow: 0 18px 36px -12px rgba(215,167,101,.65); }
 
 /* =============================================================
    HEADER
@@ -177,8 +185,8 @@ ul{ list-style: none; margin: 0; padding: 0; }
   gap: 12px;
 }
 .brand-logo{
-  width: 38px;
-  height: 38px;
+  width: 142px;
+  height: 142px;
   object-fit: contain;
 }
 .brand-text{
@@ -187,10 +195,7 @@ ul{ list-style: none; margin: 0; padding: 0; }
   font-weight: 700;
   letter-spacing: .08em;
   text-transform: uppercase;
-  color: var(--white);
-}
-.brand-text .accent{
-  background: var(--gradient);
+  background: linear-gradient(90deg, var(--gold), var(--purple));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -249,24 +254,21 @@ ul{ list-style: none; margin: 0; padding: 0; }
   position: absolute;
   inset: 0;
   z-index: 0;
-  background: url("../assets/neon-sign.jpg") center 38% / cover no-repeat;
-  filter: brightness(.7) saturate(2.3) contrast(1.1);
-  -webkit-mask-image: radial-gradient(ellipse 88% 82% at 50% 42%, black 30%, transparent 92%);
-  mask-image: radial-gradient(ellipse 88% 82% at 50% 42%, black 30%, transparent 92%);
+  background: url("../assets/neon-sign.jpg") 142% 40% / 75% auto no-repeat;
+  filter: saturate(1.8) contrast(1.15) brightness(1.15);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, transparent 24%, black 52%);
+  mask-image: linear-gradient(90deg, transparent 0%, transparent 24%, black 52%);
 }
 .hero-scrim{
   position: absolute;
   inset: 0;
   z-index: 0;
-  background:
-    radial-gradient(ellipse 900px 600px at 12% 15%, rgba(124,79,209,.16), transparent 60%),
-    radial-gradient(ellipse 700px 500px at 90% 85%, rgba(215,167,101,.1), transparent 55%),
-    linear-gradient(100deg, var(--black) 0%, rgba(10,9,12,.86) 26%, rgba(10,9,12,.5) 46%, rgba(10,9,12,.2) 64%, rgba(10,9,12,.05) 80%, transparent 96%);
+  background: linear-gradient(90deg, var(--black) 0%, var(--black) 22%, rgba(10,9,12,.85) 34%, rgba(10,9,12,.5) 44%, rgba(10,9,12,.18) 54%, transparent 64%);
 }
 .hero-inner{
   position: relative;
   z-index: 1;
-  max-width: 640px;
+  max-width: 720px;
   margin: 0;
   margin-left: clamp(20px, 14vw, 260px);
 }
@@ -290,7 +292,7 @@ ul{ list-style: none; margin: 0; padding: 0; }
   display: inline-block;
 }
 .hero-text h1{
-  font-size: clamp(2.3rem, 4.2vw, 3.8rem);
+  font-size: clamp(2rem, 3.6vw, 3rem);
   line-height: 1.16;
   margin-bottom: .45em;
 }
@@ -364,17 +366,17 @@ ul{ list-style: none; margin: 0; padding: 0; }
   position: absolute;
   top: 0;
   bottom: 0;
-  width: clamp(48px, 10%, 180px);
+  width: clamp(40px, 6%, 110px);
   z-index: 2;
   pointer-events: none;
 }
 .marquee::before{
   left: 0;
-  background: linear-gradient(to right, var(--black-2) 30%, transparent);
+  background: linear-gradient(to right, var(--black-2), transparent);
 }
 .marquee::after{
   right: 0;
-  background: linear-gradient(to left, var(--black-2) 30%, transparent);
+  background: linear-gradient(to left, var(--black-2), transparent);
 }
 .marquee-track{
   display: flex;
@@ -387,11 +389,18 @@ ul{ list-style: none; margin: 0; padding: 0; }
   font-weight: 500;
   letter-spacing: .1em;
   text-transform: uppercase;
-  color: var(--white);
+  color: var(--gold-light);
   white-space: nowrap;
   padding-right: 16px;
 }
-.marquee-track span em{ padding: 0 16px 0 0; font-size: .9em; }
+.marquee-track span em{
+  padding: 0 16px 0 0;
+  font-size: .9em;
+  background: none;
+  -webkit-background-clip: unset;
+  background-clip: unset;
+  color: var(--white);
+}
 @keyframes scrollLeft{
   from{ transform: translateX(0); }
   to{ transform: translateX(-50%); }
@@ -407,6 +416,8 @@ ul{ list-style: none; margin: 0; padding: 0; }
 }
 .section-head h2{ font-size: clamp(2rem, 3.6vw, 2.9rem); }
 .section-sub{ margin-top: 6px; }
+.team .section-head{ max-width: 760px; }
+.team .section-head h2{ font-size: clamp(1.7rem, 3.4vw, 2.6rem); white-space: nowrap; }
 
 section{ padding: 130px 0; }
 
@@ -419,35 +430,34 @@ section{ padding: 130px 0; }
   gap: 80px;
   align-items: center;
 }
-.about-visual{ position: relative; }
-.about-photo{
+.about-visual{ position: relative; padding: 22px; }
+.about-frame{
   position: relative;
   width: 100%;
-  aspect-ratio: 4/5;
-  border-radius: var(--radius);
-  overflow: hidden;
-  box-shadow: 0 40px 70px -30px rgba(0,0,0,.7);
 }
-.about-photo img{
-  width: 100%; height: 100%;
-  object-fit: cover;
-  object-position: 30% 55%;
-  filter: grayscale(1) contrast(1.08) brightness(.9);
-}
-.about-photo .about-badge{
+.about-frame::before,
+.about-frame::after{
+  content: "";
   position: absolute;
-  top: -20px; left: -20px;
-  width: 88px;
-  height: 88px;
-  border-radius: 50%;
-  background: var(--black);
-  border: 1px solid var(--line);
-  padding: 10px;
-  box-shadow: 0 14px 30px rgba(0,0,0,.5);
+  z-index: 0;
+  border: 1.5px solid rgba(168,121,232,.7);
+  box-shadow: 0 0 14px rgba(168,121,232,.35);
+  pointer-events: none;
 }
-.about-photo .about-badge img{ width: 100%; height: 100%; object-fit: contain; filter: none; }
+.about-frame::before{ inset: -22px -22px 22px 22px; }
+.about-frame::after{ inset: 22px 22px -22px -22px; border-color: rgba(168,121,232,.4); }
+.about-frame img{
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4/5;
+  object-fit: cover;
+  object-position: 30% 25%;
+  box-shadow: 0 40px 70px -30px rgba(0,0,0,.75);
+}
 
-.about-content h2{ font-size: clamp(2rem, 3.6vw, 2.7rem); }
+.about-content h2{ font-size: clamp(.85rem, 4.4vw, 2.2rem); white-space: nowrap; }
 .about-list{ margin: 28px 0; }
 .about-list li{
   display: flex;
@@ -476,6 +486,7 @@ section{ padding: 130px 0; }
   letter-spacing: .06em;
   text-transform: uppercase;
   color: var(--gold-light);
+  background: rgba(255,255,255,.04);
   border: 1px solid var(--line);
   border-radius: 999px;
   padding: 8px 18px;
@@ -510,7 +521,7 @@ section{ padding: 130px 0; }
   color: var(--muted);
   transition: color var(--transition);
 }
-.service-card h3{ font-size: 1.05rem; margin-bottom: 8px; line-height: 1.25; color: var(--white); }
+.service-card h3{ font-size: 1.05rem; margin-bottom: 8px; line-height: 1.25; color: var(--gold-light); }
 .service-card p{ font-size: .86rem; }
 
 .services-cta{
@@ -526,44 +537,82 @@ section{ padding: 130px 0; }
 }
 
 /* =============================================================
+   TEAM
+============================================================= */
+.team{ background: var(--black-2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.team-grid{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.team-card{
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  background: var(--black);
+}
+.team-card img{
+  width: 100%;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+  display: block;
+  transition: transform .6s ease;
+}
+.team-card:hover img{ transform: scale(1.06); }
+.team-name{
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  padding: 22px 20px;
+  background: linear-gradient(to top, rgba(10,9,12,.92), transparent);
+  font-family: 'Mr Dafoe', cursive;
+  font-weight: 400;
+  letter-spacing: .01em;
+  text-transform: none;
+  font-size: 2rem;
+}
+.team-name span{
+  color: var(--white);
+}
+
+/* =============================================================
    INSTAGRAM FEATURE
 ============================================================= */
 .instagram{ background: var(--black); }
 .insta-card{
-  max-width: 880px;
+  max-width: 720px;
   margin: 0 auto;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
+  border: 1.5px solid rgba(215,167,101,.55);
+  border-radius: 24px;
   background: var(--black-2);
-  padding: 64px 56px;
+  padding: 44px 48px;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 44px;
-  flex-wrap: wrap;
-  justify-content: center;
   text-align: center;
+  box-shadow: 0 0 46px rgba(215,167,101,.14), 0 40px 80px -30px rgba(124,79,209,.3);
 }
-.insta-icon{
-  width: 60px;
-  height: 60px;
-  flex-shrink: 0;
-  color: var(--gold);
+.insta-icon-gloss{
+  width: 72px;
+  height: 72px;
+  margin-bottom: 12px;
+  filter: drop-shadow(0 6px 14px rgba(0,0,0,.45)) drop-shadow(0 0 18px rgba(215,167,101,.35));
 }
 .insta-card h3{
   font-family: var(--font-display);
   text-transform: uppercase;
-  font-size: clamp(1.5rem, 2.6vw, 2rem);
-  margin-bottom: 10px;
+  font-size: clamp(1.1rem, 1.9vw, 1.4rem);
+  margin: 4px 0 10px;
 }
-.insta-card p{ max-width: 440px; margin: 0 auto 22px; }
+.insta-card p{ max-width: 420px; margin: 0 auto 20px; }
 .insta-handle{
   display: block;
   font-family: var(--font-body);
   font-weight: 600;
   color: var(--gold-light);
   letter-spacing: .04em;
-  margin-bottom: 6px;
-  font-size: 1rem;
+  font-size: .92rem;
+  margin-bottom: 2px;
 }
 
 /* =============================================================
@@ -618,7 +667,7 @@ section{ padding: 130px 0; }
 .map-card{
   position: relative;
   border: 1px solid var(--line);
-  border-radius: var(--radius);
+  border-radius: 16px;
   overflow: hidden;
   background: var(--black-3);
 }
@@ -637,21 +686,14 @@ section{ padding: 130px 0; }
 }
 .map-caption{
   position: absolute;
-  left: 0; right: 0; bottom: 0;
+  right: 18px; bottom: 16px;
   z-index: 3;
   pointer-events: none;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 18px 22px;
-  background: linear-gradient(to top, rgba(10,9,12,.94), transparent);
-}
-.map-caption span{
-  font-family: var(--font-body);
-  color: var(--white);
-  font-size: .88rem;
-  letter-spacing: .02em;
+  padding: 8px 14px;
+  background: rgba(10,9,12,.75);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  backdrop-filter: blur(4px);
 }
 .map-caption .map-cta{
   font-family: var(--font-body);
@@ -660,6 +702,83 @@ section{ padding: 130px 0; }
   letter-spacing: .1em;
   text-transform: uppercase;
   color: var(--gold-light);
+}
+
+.map-info{
+  position: absolute;
+  top: 16px; left: 16px;
+  z-index: 3;
+  pointer-events: none;
+  max-width: 240px;
+  background: rgba(10,9,12,.88);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 14px 18px;
+  backdrop-filter: blur(6px);
+}
+.map-info strong{
+  display: block;
+  font-family: var(--font-body);
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--white);
+  font-size: .85rem;
+  margin-bottom: 6px;
+}
+.map-info span{
+  display: block;
+  font-size: .76rem;
+  line-height: 1.5;
+  color: var(--muted);
+}
+.map-status{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  font-size: .72rem;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.map-status .dot{
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--muted-2);
+  flex-shrink: 0;
+}
+.map-status.open .dot{ background: #6fe08a; box-shadow: 0 0 0 3px rgba(111,224,138,.16); }
+.map-status.closed .dot{ background: #e0716f; box-shadow: 0 0 0 3px rgba(224,113,111,.16); }
+
+.map-pin{
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -68%);
+  z-index: 3;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.map-pin svg{
+  width: 26px;
+  height: 26px;
+  filter: drop-shadow(0 4px 10px rgba(0,0,0,.5));
+}
+.map-pin .pin-label{
+  background: rgba(10,9,12,.85);
+  border: 1px solid rgba(215,167,101,.4);
+  padding: 5px 12px;
+  border-radius: 6px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: .7rem;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  white-space: nowrap;
 }
 
 /* =============================================================
@@ -679,8 +798,8 @@ section{ padding: 130px 0; }
   border-bottom: 1px solid var(--line);
 }
 .footer-logo{
-  width: 44px;
-  height: 44px;
+  width: 142px;
+  height: 142px;
   object-fit: contain;
   margin-bottom: 16px;
 }
@@ -820,6 +939,7 @@ section{ padding: 130px 0; }
   }
   .about-visual{ margin-bottom: 10px; max-width: 380px; }
   .services-grid{ grid-template-columns: repeat(2, 1fr); }
+  .team-grid{ grid-template-columns: repeat(2, 1fr); }
   .footer-inner{ grid-template-columns: 1fr 1fr; }
   .insta-card{ padding: 48px 32px; text-align: center; flex-direction: column; }
 

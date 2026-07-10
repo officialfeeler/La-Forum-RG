@@ -77,9 +77,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ---------- Abierto / cerrado ahora ----------
      Horario: Lun-Vie 10:00-14:00 y 16:00-20:00 · Sáb 10:00-15:00 · Dom cerrado */
-  const statusEl = document.getElementById('heroStatus');
-  if (statusEl) {
-    const statusText = statusEl.querySelector('.status-text');
+  const statusEls = [document.getElementById('heroStatus'), document.getElementById('mapStatus')].filter(Boolean);
+  if (statusEls.length) {
     const updateStatus = () => {
       const now = new Date();
       const day = now.getDay(); // 0 Dom ... 6 Sáb
@@ -92,9 +91,12 @@ document.addEventListener('DOMContentLoaded', () => {
         open = mins >= 600 && mins < 900;
       }
 
-      statusEl.classList.toggle('open', open);
-      statusEl.classList.toggle('closed', !open);
-      if (statusText) statusText.textContent = open ? 'Abierto ahora' : 'Cerrado ahora';
+      statusEls.forEach(el => {
+        el.classList.toggle('open', open);
+        el.classList.toggle('closed', !open);
+        const statusText = el.querySelector('.status-text');
+        if (statusText) statusText.textContent = open ? 'Abierto ahora' : 'Cerrado ahora';
+      });
     };
     updateStatus();
     setInterval(updateStatus, 60000);
