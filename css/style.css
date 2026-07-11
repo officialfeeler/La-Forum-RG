@@ -185,8 +185,8 @@ ul{ list-style: none; margin: 0; padding: 0; }
   gap: 12px;
 }
 .brand-logo{
-  width: 142px;
-  height: 142px;
+  width: 168px;
+  height: 168px;
   object-fit: contain;
 }
 .brand-text{
@@ -254,16 +254,24 @@ ul{ list-style: none; margin: 0; padding: 0; }
   position: absolute;
   inset: 0;
   z-index: 0;
-  background: url("../assets/neon-sign.jpg") 142% 40% / 75% auto no-repeat;
+  background: url("../assets/neon-sign.jpg") 126% 40% / 65% auto no-repeat;
   filter: saturate(1.8) contrast(1.15) brightness(1.15);
-  -webkit-mask-image: linear-gradient(90deg, transparent 0%, transparent 24%, black 52%);
-  mask-image: linear-gradient(90deg, transparent 0%, transparent 24%, black 52%);
+  -webkit-mask-image:
+    linear-gradient(90deg, transparent 0%, transparent 32%, black 58%),
+    linear-gradient(180deg, transparent 0%, black 14%, black 52%, transparent 94%),
+    linear-gradient(90deg, black 0%, black 82%, transparent 100%);
+  mask-image:
+    linear-gradient(90deg, transparent 0%, transparent 32%, black 58%),
+    linear-gradient(180deg, transparent 0%, black 14%, black 52%, transparent 94%),
+    linear-gradient(90deg, black 0%, black 82%, transparent 100%);
+  -webkit-mask-composite: source-in, source-in;
+  mask-composite: intersect;
 }
 .hero-scrim{
   position: absolute;
   inset: 0;
   z-index: 0;
-  background: linear-gradient(90deg, var(--black) 0%, var(--black) 22%, rgba(10,9,12,.85) 34%, rgba(10,9,12,.5) 44%, rgba(10,9,12,.18) 54%, transparent 64%);
+  background: linear-gradient(90deg, var(--black) 0%, var(--black) 28%, rgba(10,9,12,.85) 40%, rgba(10,9,12,.5) 50%, rgba(10,9,12,.18) 60%, transparent 70%);
 }
 .hero-inner{
   position: relative;
@@ -962,6 +970,32 @@ section{ padding: 130px 0; }
   .main-nav ul{ flex-direction: column; gap: 24px; }
   .nav-toggle{ display: flex; }
   .floating-cta{ display: flex; }
+}
+
+@media (max-width: 760px){
+  .brand-logo{ width: 84px; height: 84px; }
+  .brand-text{ font-size: .82rem; }
+  .hero{
+    display: block;
+    min-height: auto;
+    padding-top: 150px;
+    padding-bottom: 0;
+  }
+  .hero-inner{
+    padding-bottom: 46vw;
+  }
+  .hero-bg{
+    inset: auto 0 0 0;
+    height: min(72vw, 340px);
+    background: url("../assets/neon-sign.jpg") 62% 42% / cover no-repeat;
+    -webkit-mask-image: linear-gradient(180deg, transparent 0%, black 22%, black 100%);
+    mask-image: linear-gradient(180deg, transparent 0%, black 22%, black 100%);
+    -webkit-mask-composite: source-over;
+    mask-composite: add;
+  }
+  .hero-scrim{ display: none; }
+  .hero-text h1{ font-size: clamp(1.7rem, 8vw, 2.4rem); }
+  .team .section-head h2{ white-space: normal; }
 }
 
 @media (max-width: 620px){
