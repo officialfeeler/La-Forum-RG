@@ -102,6 +102,55 @@ document.addEventListener('DOMContentLoaded', () => {
     setInterval(updateStatus, 60000);
   }
 
+  /* ---------- Reviews carousel ---------- */
+  const reviewsTrack = document.getElementById('reviewsTrack');
+  if (reviewsTrack) {
+    const cards = Array.from(reviewsTrack.children);
+    const dotsWrap = document.getElementById('reviewsDots');
+    const prevBtn = document.getElementById('reviewsPrev');
+    const nextBtn = document.getElementById('reviewsNext');
+    let index = 0;
+    let timer = null;
+
+    cards.forEach((_, i) => {
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.setAttribute('aria-label', `Ir a la reseña ${i + 1}`);
+      dot.addEventListener('click', () => goTo(i));
+      dotsWrap.appendChild(dot);
+    });
+    const dots = Array.from(dotsWrap.children);
+
+    function render() {
+      reviewsTrack.style.transform = `translateX(-${index * 100}%)`;
+      dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+    }
+
+    function goTo(i) {
+      index = (i + cards.length) % cards.length;
+      render();
+      restartAutoplay();
+    }
+
+    function next() { goTo(index + 1); }
+    function prev() { goTo(index - 1); }
+
+    function restartAutoplay() {
+      if (timer) clearInterval(timer);
+      timer = setInterval(next, 6000);
+    }
+
+    nextBtn.addEventListener('click', next);
+    prevBtn.addEventListener('click', prev);
+
+    const carousel = document.querySelector('.reviews-carousel');
+    carousel.addEventListener('mouseenter', () => clearInterval(timer));
+    carousel.addEventListener('mouseleave', restartAutoplay);
+
+    render();
+    restartAutoplay();
+  }
+
   /* ---------- Footer year ---------- */
   const yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
