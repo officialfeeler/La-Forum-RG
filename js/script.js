@@ -151,6 +151,55 @@ document.addEventListener('DOMContentLoaded', () => {
     restartAutoplay();
   }
 
+  /* ---------- Venue carousel ---------- */
+  const venueTrack = document.getElementById('venueTrack');
+  if (venueTrack) {
+    const slides = Array.from(venueTrack.children);
+    const dotsWrap = document.getElementById('venueDots');
+    const prevBtn = document.getElementById('venuePrev');
+    const nextBtn = document.getElementById('venueNext');
+    let index = 0;
+    let timer = null;
+
+    slides.forEach((_, i) => {
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.setAttribute('aria-label', `Ir a la imagen ${i + 1}`);
+      dot.addEventListener('click', () => goTo(i));
+      dotsWrap.appendChild(dot);
+    });
+    const dots = Array.from(dotsWrap.children);
+
+    function render() {
+      venueTrack.style.transform = `translateX(-${index * 100}%)`;
+      dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+    }
+
+    function goTo(i) {
+      index = (i + slides.length) % slides.length;
+      render();
+      restartAutoplay();
+    }
+
+    function next() { goTo(index + 1); }
+    function prev() { goTo(index - 1); }
+
+    function restartAutoplay() {
+      if (timer) clearInterval(timer);
+      timer = setInterval(next, 5000);
+    }
+
+    nextBtn.addEventListener('click', next);
+    prevBtn.addEventListener('click', prev);
+
+    const carousel = document.querySelector('.venue-carousel');
+    carousel.addEventListener('mouseenter', () => clearInterval(timer));
+    carousel.addEventListener('mouseleave', restartAutoplay);
+
+    render();
+    restartAutoplay();
+  }
+
   /* ---------- Footer year ---------- */
   const yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
